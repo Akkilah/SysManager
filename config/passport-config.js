@@ -15,7 +15,7 @@ const init = function (passport,db) {
             // ...
 
             ;
-            let myquert = `SELECT idUser,Email, Password FROM User where Email = '${username}';`
+            let myquert = `SELECT idUser,Email, Password FROM user where Email = '${username}';`
             const [rows,fields] = await db.promise().query(myquert)
 
             //..

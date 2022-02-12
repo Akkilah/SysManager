@@ -1,5 +1,5 @@
 {
-  "name": "engagedb",
+  "name": "sysmanager",
   "version": "1.0.0",
   "description": "engage database app",
   "main": "app.js",

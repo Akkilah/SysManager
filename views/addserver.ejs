@@ -1,0 +1,223 @@
+<%- include ('./partial/header',{title:'Add Server'}) %>
+
+<form action="/addserver" method="POST">
+
+    <div class="row p-1">
+        <div class="col">
+            <label for="hostname">Hostname </label>
+            <input type="text" id="hostname" name="hostname" value="<%= typeof hostname != 'undefined' ? hostname : '' %>" required>
+        </div>
+        <div class="col">
+            <label for="ip"> IP</label>
+            <input type="text" id="ip" name="ip" value="<%= typeof ip != 'undefined' ? ip : '' %>" required>
+        </div>
+        <div class="col p-4">
+            <select name="recstatus" id="recstatus">
+                <!--TODO: I should query the value from db-->
+                <option value="" disabled selected hidden>Recording Status</option>
+                <option value="active">Active</option>
+                <option value="standby">standby</option>
+            </select>
+        </div>
+        <div class="col p-4">
+            <select name="recordingmode" id="recordingmode">
+                <!--TODO: I should query the value from db-->
+                <option value="" disabled selected hidden>Recording mode</option>
+                <option value="BB">B&B</option>
+                <option value="spanning">Spanning</option>
+                <option value="mix" >Mix</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label for="sqlhostname">SQL Hostname </label>
+            <input type="text" size="10" id="sqlhostname" name="sqlhostname" value="<%= typeof sqlhostname != 'undefined' ? sqlhostname : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="sqlip">SQL IP </label>
+            <input type="text" size="10" id="sqlip" name="sqlip" value="<%= typeof sqlip != 'undefined' ? sqlip : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="sqlinstant">SQL Instant </label>
+            <input type="text" size="10" id="sqlinstant" name="sqlinstant" value="<%= typeof sqlinstant != 'undefined' ? sqlip : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="sqlusername">SQL UserName </label>
+            <input type="text" size="10" id="sqlusername" name="sqlusername" value="<%= typeof sqlusername != 'undefined' ? sqlusername : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="sqlpassword">SQL Password </label>
+            <input type="text" size="10" id="sqlpassword" name="sqlpassword" value="<%= typeof sqlpassword != 'undefined' ? sqlpassword : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="sqlversion">SQL Version </label>
+            <input type="number" size="10" id="sqlversion" name="sqlversion" value="<%= typeof sqlversion != 'undefined' ? sqlversion : '2016' %>" >
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label for="appusername">App User</label>
+            <input type="text" size="10" id="appusername" name="appusername" value="<%= typeof appusername != 'undefined' ? appusername : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="apppassword">App Password</label>
+            <input type="text" size="10" id="apppassword" name="apppassword" value="<%= typeof apppassword != 'undefined' ? apppassword : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="appcucmprimary">CUCM IP Primary</label>
+            <input type="text" size="10" id="appcucmprimary" name="appcucmprimary" value="<%= typeof appcucmprimary != 'undefined' ? appcucmprimary : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="appcucmsecondary">CUCM IP Secondary</label>
+            <input type="text" size="10" id="appcucmsecondary" name="appcucmsecondary" value="<%= typeof appcucmsecondary != 'undefined' ? appcucmsecondary : '' %>" >
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label for="osvirsion">OS Version</label>
+            <select name="osvirsion" id="recstatus" >
+                <!--TODO: I should query the value from db-->
+                <option value="" disabled selected hidden>Win Version</option>
+                <option value="win2016">win 2016</option>
+                <option value="win2012R2">win 2012 R2</option>
+                <option value="win2008">win 2008</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <label for="osusername">OS UserName</label>
+            <input type="text" size="10" id="osusername" name="osusername" value="<%= typeof osusername != 'undefined' ? osusername : '' %>" >
+        </div>
+        <div class="col-2">
+            <label for="ospassword">OS Password</label>
+            <input type="text" size="10" id="ospassword" name="ospassword" value="<%= typeof ospassword != 'undefined' ? ospassword : '' %>" >
+        </div>
+    </div>
+    
+    <!-- infastracture -->
+    <div class="row">
+       <div class="col-2">
+            <label for="sertype">Server Type</label>
+            <select name="sertype" id="sertype" >
+                <!--TODO: I should query the value from db-->
+                <option value="" disabled selected hidden>Server Type</option>
+                <option value="physical">physical</option>
+                <option value="virtual">Virtual</option>
+            </select> 
+        </div>
+        <div class="col-2">
+            <label for="sermanufacturer">Server Manufacturer</label>
+            <select name="sermanufacturer" id="sermanufacturer" >
+                <!--TODO: I should query the value from db-->
+                <option value="" disabled selected hidden>Server Manufac</option>
+                <optgroup label="HP">
+                    <option value="hpgen10">HP Gen 10</option>
+                </optgroup>
+                <optgroup label="DELL">
+                    <option value="PowerEdge">PowerEdge</option>
+                </optgroup>
+                
+            </select> 
+        </div>
+        <div class="col-2">
+            <label for="serpic">Picture </label>
+            <input type="file"  id="serpic" name="serpic" value="<%= typeof serpic != 'undefined' ? serpic : '' %>" >
+        </div>
+
+    </div>
+
+    <!-- client-->
+    <div class="row">
+        <div class="col-2">
+            <label for="clientName">Client Name</label>
+            <select name="clientName" id="clientName" >
+                <!--TODO: I should query the value from db-->
+                <option value="" disabled selected hidden>Client Name</option>
+                <option value="ncb">NCB</option>
+                <option value="magrabi">Magrabi</option>
+            </select> 
+        </div>
+        <div class="col-2">
+            <label for="clientsit">Client Site</label>
+            <select name="clientsit" id="clientsit" >
+                <!--TODO: I should query the value from db-->
+                <option value="" disabled selected hidden>Client Site</option>
+                <option value="K10">K10</option>
+                <option value="NDC">NDC</option>
+                <option value="MITC">NDC</option>
+            </select> 
+        </div>
+        <div class="col-2">
+            <label for="clientdept">Client DEPT</label>
+            <select name="clientdept" id="clientdept" >
+                <!--TODO: I should query the value from db-->
+                <option value="" disabled selected hidden>Client DEPT</option>
+                <option value="finance">Finance </option>
+                <option value="security">Secuirty</option>
+            </select> 
+        </div>
+    </div>
+
+    <!-- licence-->
+    <div class="row">
+        <div class="col-1">
+            <label for="licnumber">licence Number </label>
+            <input type="number"  size='3' id="licnumber" name="licnumber" value="<%= typeof licnumber != 'undefined' ? licnumber : '' %>" >
+        </div>
+        <div class="col-1">
+            <label for="licrecordingseats">Recording Seats </label>
+            <input type="number" size='3' id="licrecordingseats" name="licrecordingseats" value="<%= typeof licrecordingseats != 'undefined' ? licrecordingseats : '' %>" >
+        </div>
+        <div class="col-1">
+            <label for="licevaluationseat">Evaluation Seats </label>
+            <input type="number" size='3' id="evaluationseat" name="evaluationseat" value="<%= typeof evaluationseat != 'undefined' ? evaluationseat : '' %>" >
+        </div>
+        <div class="col-1">
+            <label for="licscreencapture">Screen Capture Seats </label>
+            <input type="number" size='3' id="licscreencapture" name="licscreencapture" value="<%= typeof licscreencapture != 'undefined' ? licscreencapture : '' %>" >
+        </div>
+        <div class="col-1">
+            <label for="licvoiceanalytics">Voice Analytics Seats </label>
+            <input type="number" size='3' id="licvoiceanalytics" name="licvoiceanalytics" value="<%= typeof licvoiceanalytics != 'undefined' ? licvoiceanalytics : '' %>" >
+        </div>
+        <div class="col-1">
+            <label for="licdesktopanalytics">Desktop Analytics Seats </label>
+            <input type="number"  size='3' id="desktopanalytics" name="desktopanalytics" value="<%= typeof desktopanalytics != 'undefined' ? desktopanalytics : '' %>" >
+        </div>
+        <div class="col-1">
+            <label for="liccenterlizedmanagement"> Centerlized Management </label>
+            <input type="text"  size='3' id="liccenterlizedmanagement" name="liccenterlizedmanagement" value="<%= typeof liccenterlizedmanagement != 'undefined' ? liccenterlizedmanagement : 'NO' %>" >
+        </div>
+        <div class="col-1">
+            <label for="licclustering">Clustering </label>
+            <input type="text"  size='3' id="licclustering" name="licclustering" value="<%= typeof licclustering != 'undefined' ? licclustering : 'NO' %>" >
+        </div>
+        <div class="col-1">
+            <label for="licfileencryption">file Encryption </label>
+            <input type="text"  size='3' id="licfileencryption" name="licfileencryption" value="<%= typeof licfileencryption != 'undefined' ? licfileencryption : 'NO' %>" >
+        </div>
+        <div class="col-1">
+            <label for="licversion"> Licence Version</label>
+            <input type="text"  size='3' id="licversion" name="licversion" value="<%= typeof licversion != 'undefined' ? licversion : '' %>" >
+        </div>
+        
+        <div class="col-1">
+            <label for="licmaintenance">Maintenance Date</label>
+            <input type="date"   id="licmaintenance" name="licmaintenance" value="<%= typeof licmaintenance != 'undefined' ? licmaintenance : '' %>" >
+        </div>
+        
+
+    </div>
+
+    <button type="submit">Save </button>
+
+</form>
+
+
+
+<!-- scripts and end of doc -->size='3'
+<%- include ('./partial/footer') %>

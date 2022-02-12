@@ -1,0 +1,1 @@
+SELECT  'hostname' , 'ip' , 'customername' FROM mydb.Recorder left join mydb.Customer on CustomerID = idCustomer;

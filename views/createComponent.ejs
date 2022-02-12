@@ -1,0 +1,131 @@
+<%- include ('./partial/header',{title:'Create Component'}) %>
+<!-- Content here -->
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <%- include ('./partial/messages') %>
+  </div>
+  
+  <div class="col-2"></div>
+</div>
+
+<div class="row">
+  <div class="col-2"></div>
+  <!-- Center of Page-->
+  <div class="col-8">
+    <form action="./create" method="POST" >
+      <div class="row pt-2">
+        <div class="col-auto">
+          <label for="name">The Component Template name: </label>
+          <input type="text" class="form-control" name="tempName" placeholder="Name" />
+        </div>
+      </div>
+
+      <!--Grouping all element here-->
+      <div id="elements" class="p-auto">
+        <div class="row pt-2" id="anElement">
+          <div class="col-auto">
+            <input
+              type="text"
+              class="form-control"
+              name="key"
+              placeholder="Name"
+              required
+            />
+          </div>
+          <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingSelect">Type</label>
+            <select class="form-select" name='type' id="autoSizingSelect">
+              <option selected value="String">String</option>
+              <option value="Number">Number</option>
+              <option value="DataTime">DateTime</option>
+              <option value="Boolean">Boolean</option>
+            </select>
+          </div>
+          <!-- add button-->
+          <div class="col-auto" id="pendingSave">
+            <button type="button" onClick="addElement()" class="btn btn-dark">
+              <span class="bi bi-plus-circle-dotted"></span> add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pt-2">
+        <button type="submit" onclick="saveStatus()" class="btn btn-success">Save</button>
+      </div>
+
+    </form>
+  </div>
+  <!-- end: center of the page-->
+  <div class="col-2"></div>
+</div>
+
+<script>
+  function addElement() {
+    console.log("addElement");
+    let element = document.createElement("div");
+    element.classList.add("row");
+    element.classList.add("pt-2");
+    element.setAttribute("id", "anElement");
+    //mean the user did save it yet
+    element.innerHTML = ` 
+          <div class="col-auto">
+            <input
+              type="text"
+              class="form-control"
+              name="key"
+              placeholder="Name"
+              required
+            />
+          </div>
+          <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingSelect">Type</label>
+            <select class="form-select" name="type" id="autoSizingSelect">
+              <option selected value="String">String</option>
+              <option value="Number">Number</option>
+              <option value="DataTime">DateTime</option>
+              <option value="Boolean">Boolean</option>
+            </select>
+          </div>
+          <!-- add button-->
+          <div class="col-auto" id="pendingSave">
+            <button type="button" onClick="addElement()" class="btn btn-dark">
+              <span class="bi bi-plus-circle-dotted"></span> add
+            </button>
+          </div>
+          `;
+    let tempElement = document.getElementById("elements");
+    document.getElementById("pendingSave").remove();
+    tempElement.appendChild(element);
+  }
+
+  // not in use anymore
+  function saveStatus(){
+
+    let elments = document.querySelectorAll('#anElement');
+    //conver the linklist to array
+    let arrElements = Array.from(elments)
+    //console.log(arrElements)
+    let data = {}
+    data.tempName = 'my first templet'
+    arrElements.forEach((element,i)=>{
+      data[i]={}
+      data[i].id=i
+      data[i].key=element.querySelector('input').value
+      data[i].type = element.querySelector('select').value
+      
+    })
+    console.log(data)
+
+  }
+  /*<!-- delete button-->
+          <div class="col-auto">
+            <button type="button" class="btn btn-danger">
+              <span class="bi bi-plus-circle-dotted"></span> Delete
+            </button>
+          </div>`*/
+</script>
+
+<!-- scripts and end of doc -->
+<%- include ('./partial/footer') %>
